@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\controllers;
-
-use illuminate\Http\Request;
+namespace App\Http\Controllers;
 
 class ProfileController extends Controller
 {

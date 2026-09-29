@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserModel extends Model
 {
@@ -14,5 +15,12 @@ class UserModel extends Model
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
+
+    public function getUser()
+    {
+        return $this->join('kelas', 'user.kelas_id', '=', 'kelas.id')
+            ->select('user.*', 'kelas.nama_kelas')
+            ->get();
     }
 }

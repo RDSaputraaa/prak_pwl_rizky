@@ -20,7 +20,7 @@ class KelasSeeder extends Seeder
         ];
 
         foreach ($data as $kelas) {
-            \App\Models\Kelas::create([
+            \App\Models\Kelas::firstOrCreate([
                 'nama_kelas' => $kelas
             ]);
         }
