@@ -42,6 +42,35 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit(int $id)
+    {
+        $user = $this->userModel->findOrFail($id);
+
+        return view('edit_user', [
+            'title' => 'Edit Pengguna',
+            'user' => $user,
+            'kelas' => $this->kelasModel->getKelas(),
+        ]);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $validated = $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'npm' => ['required', 'string', 'max:255'],
+            'kelas_id' => ['required', 'exists:kelas,id'],
+        ]);
+
+        $user = $this->userModel->findOrFail($id);
+        $user->update([
+            'name' => $validated['nama'],
+            'nim' => $validated['npm'],
+            'kelas_id' => $validated['kelas_id'],
+        ]);
+
+        return redirect()->route('users.index')->with('success', 'Data pengguna berhasil diperbarui.');
+    }
+
     public function destroy(int $id)
     {
         $user = $this->userModel->findOrFail($id);

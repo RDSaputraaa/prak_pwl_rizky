@@ -12,7 +12,9 @@ Route::get('/', function () {
 Route::get('/profile/{nama}/{NPM}/{kelas}', [ProfileController::class, 'profile']);
 Route::get('/user', [UserController::class, 'index'])->name('users.index');
 Route::get('/user/create', [UserController::class, 'create'])->name('users.create');
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
+Route::put('/user/{id}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/matakuliah', [MataKuliahController::class, 'index']);
